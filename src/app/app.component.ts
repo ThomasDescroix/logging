@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoggingService } from '@shared/serives/logging.service';
 
 @Component({
   selector: 'app-root',
@@ -23,10 +24,19 @@ import { Component } from '@angular/core';
         <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
       </li>
     </ul>
-    
+
   `,
   styles: []
 })
 export class AppComponent {
   title = 'logging';
+
+  constructor(private loggingService: LoggingService) {}
+
+  ngOnInit() {
+    this.loggingService.debug('Debug message');
+    this.loggingService.info('Info message');
+    this.loggingService.warn('Warn message');
+    this.loggingService.error('Error message');
+  }
 }
